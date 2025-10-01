@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Componentes</string>
+    <string name="saludo">Hola en aleman</string>
+    <string name="textViewInicio">Tema 3 en Aleman</string>
+    <string name="textobotonidiomas">BotonAleman</string>
+    <string name="textobotoningles">boton aleman</string>
+</resources>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Components</string>
+    <string name="saludo">Helloo</string>
+    <string name="textViewInicio">Unit 3 Components</string>
+    <string name="textobotonidiomas">EnglishButton</string>
+    <string name="textobotoningles">Button english</string>
+</resources>

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Componentes</string>
+    <string name="saludo">Holaaa</string>
+    <string name="textViewInicio">Tema 3 Componentes</string>
+    <string name="textobotonidiomas">BotonEspañol</string>
 </resources>

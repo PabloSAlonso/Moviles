@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Compoñentes</string>
+    <string name="saludo">Olaa</string>
+    <string name="textViewInicio">Unidade 3 Compoñentes</string>
+    <string name="textobotonidiomas">BotonciñoGalego</string>
+    <string name="textobotoningles">Botonciño</string>
+</resources>
