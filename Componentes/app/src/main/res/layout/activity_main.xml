@@ -57,6 +57,7 @@
         android:layout_height="61dp"
         android:layout_marginTop="3dp"
         android:text="Tema3Componentes"
+        android:textColorLink="#FFFFFF"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -197,59 +198,70 @@
         android:id="@+id/radioButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="4dp"
         android:text="radioButton3"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="324dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
     <RadioButton
         android:id="@+id/radioButton4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
         android:text="radioButton4"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="372dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton3" />
 
     <Switch
         android:id="@+id/switch1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="30dp"
         android:text="Desactivado"
         android:textOff="Desactivado"
         android:textOn="Activado"
-        tools:layout_editor_absoluteX="219dp"
-        tools:layout_editor_absoluteY="362dp" />
+        app:layout_constraintBottom_toTopOf="@+id/divider5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
     <SeekBar
         android:id="@+id/seekBar"
         android:layout_width="318dp"
         android:layout_height="36dp"
-        tools:layout_editor_absoluteX="95dp"
-        tools:layout_editor_absoluteY="420dp" />
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toTopOf="@+id/divider6"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="4dp"
-        tools:layout_editor_absoluteY="464dp" />
+        android:layout_marginStart="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider6" />
 
     <EditText
         android:id="@+id/editTextText"
         android:layout_width="399dp"
         android:layout_height="55dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="6dp"
         android:ems="10"
         android:inputType="text"
         android:text="Introduce tu nombre"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="538dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
     <Button
-        android:id="@+id/btnIngles"
+        android:id="@+id/btnIdiomas"
         android:layout_width="236dp"
         android:layout_height="40dp"
         android:layout_marginStart="84dp"
         android:layout_marginTop="52dp"
-        android:text="@string/textobotonidiomas"
+        android:text="f"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
@@ -257,8 +269,10 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="22dp"
         android:text="TextView"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="429dp" />
+        app:layout_constraintEnd_toStartOf="@+id/seekBar"
+        app:layout_constraintTop_toBottomOf="@+id/divider5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

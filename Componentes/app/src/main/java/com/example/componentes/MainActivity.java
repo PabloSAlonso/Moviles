@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         ch2=findViewById(R.id.checkBox2);
         ch3=findViewById(R.id.checkBox3);
         sb=findViewById(R.id.seekBar);
-        tv=findViewById(R.id.textView);
+        tv=findViewById(R.id.tv);
         tv2=findViewById(R.id.textView2);
         sw=findViewById(R.id.switch1);
         btt=findViewById(R.id.button);
