@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent lanzarEvento = new Intent(MainActivity.this, ampliarMain.class);
-                lanzarEvento.putExtra();
+                lanzarEvento.putExtra("",0);
+                startActivity(lanzarEvento);
 
             }
         });
