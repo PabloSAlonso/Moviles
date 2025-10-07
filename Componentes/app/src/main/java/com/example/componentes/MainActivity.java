@@ -1,5 +1,6 @@
 package com.example.componentes;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,10 +14,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-import android.widget.Toolbar;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -70,6 +72,15 @@ public class MainActivity extends AppCompatActivity {
         rt=findViewById(R.id.ratingBar);
         ett=findViewById(R.id.editTextText);
         ibtt=findViewById(R.id.imageButton);
+
+        ibtt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent lanzarEvento = new Intent(MainActivity.this, ampliarMain.class);
+                lanzarEvento.putExtra();
+
+            }
+        });
 
         tb.setOnClickListener(new View.OnClickListener() {
             @Override
