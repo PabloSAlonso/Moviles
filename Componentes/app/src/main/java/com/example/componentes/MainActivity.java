@@ -2,6 +2,7 @@ package com.example.componentes;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,6 +18,11 @@ import android.widget.ToggleButton;
 
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
@@ -43,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     Switch sw;
 
     Toolbar toolbar;
+    TextView tv3;
 
 
     @Override
@@ -72,14 +79,48 @@ public class MainActivity extends AppCompatActivity {
         rt=findViewById(R.id.ratingBar);
         ett=findViewById(R.id.editTextText);
         ibtt=findViewById(R.id.imageButton);
+        tv3=findViewById(R.id.txt2result);
+
+        //ibtt.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            //public void onClick(View v) {
+                //Intent lanzarEvento = new Intent(MainActivity.this, ampliarMain.class);
+              //  lanzarEvento.putExtra("",0);
+            //    startActivity(lanzarEvento);
+
+          //  }
+        //});
+        ActivityResultLauncher<Intent> launcher=registerForActivityResult(new
+                ActivityResultContracts.StartActivityForResult(),new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode() == RESULT_OK){
+                    Intent obtenerDevolucion = result.getData();
+                    float numEstrellas = obtenerDevolucion.getFloatExtra("estrellas",0);
+                    rt.setRating(numEstrellas);
+                    tv3.setText(numEstrellas+"");
+                    Log.i("NUMERO DE ESTRELLAS",numEstrellas+"");
+                }
+            }
+        });
 
         ibtt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent lanzarEvento = new Intent(MainActivity.this, ampliarMain.class);
-                lanzarEvento.putExtra("",0);
-                startActivity(lanzarEvento);
+                Intent intent = new Intent(MainActivity.this, ampliarMain.class);
+                intent.putExtra("imageButtonET", ett.getText().toString());
+                intent.putExtra("imageButtonEstrellas",rt.getRating());
+                launcher.launch(intent);
 
+                //int contador=0;
+                //if (ch2.isChecked()){
+                    //contador--;
+                    //btt2.setText(contador+"");
+
+                //} else{
+                    //contador++;
+                    //btt2.setText(contador +"");
+                //}
             }
         });
 
@@ -122,54 +163,19 @@ public class MainActivity extends AppCompatActivity {
         btt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tb.isChecked()){
                     tb.setChecked(false);
-                }
-                if (ch1.isChecked()){
                     ch1.setChecked(false);
-                }
-                if (ch2.isChecked()){
                     ch2.setChecked(false);
-                }
-                if (ch3.isChecked()){
                     ch3.setChecked(false);
-                }
-                if(rb1.isChecked()){
                     rb1.setChecked(false);
-                }
-                if (rb2.isChecked()){
                     rb2.setChecked(false);
-                }
-                if (sb.getProgress()!=0){
                     sb.setProgress(0);
-                }
-                if(rt.getProgress()!=0){
                     rt.setProgress(0);
-                }
-                if(!ett.getText().equals("")){
                     ett.setText("");
-                }
-                btt2.setText("Button");
+                    btt2.setText("Button");
             }
         });
 
-        ibtt.setOnClickListener(new View.OnClickListener() {
-            int contador=0;
-
-            @Override
-            public void onClick(View v) {
-
-
-                if (ch2.isChecked()){
-                    contador--;
-                    btt2.setText(contador+"");
-                }else{
-                    contador++;
-                    btt2.setText(contador +"");
-                }
-            }
-
-        });
 
         rb1.setOnClickListener(new View.OnClickListener() {
             @Override
