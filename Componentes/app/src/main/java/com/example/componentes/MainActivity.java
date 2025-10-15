@@ -1,8 +1,12 @@
 package com.example.componentes;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -23,6 +27,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
@@ -49,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
     Switch sw;
 
     Toolbar toolbar;
-    TextView tv3;
+    TextView tv3, textViewLlamar;
+    Button btnCall;
+
 
 
     @Override
@@ -63,13 +70,13 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        toolbar = findViewById(R.id.toolBar);
+
+
         tb=findViewById(R.id.tooglebtn);
         ch1=findViewById(R.id.checkBox1);
         ch2=findViewById(R.id.checkBox2);
         ch3=findViewById(R.id.checkBox3);
         sb=findViewById(R.id.seekBar);
-        tv=findViewById(R.id.tv);
         tv2=findViewById(R.id.textView2);
         sw=findViewById(R.id.switch1);
         btt=findViewById(R.id.button);
@@ -80,6 +87,19 @@ public class MainActivity extends AppCompatActivity {
         ett=findViewById(R.id.editTextText);
         ibtt=findViewById(R.id.imageButton);
         tv3=findViewById(R.id.txt2result);
+        btnCall = findViewById(R.id.btnLlamar);
+        textViewLlamar = findViewById(R.id.textViewLlamar);
+
+        btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent llamar = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ ett.getText()));
+                if (llamar.resolveActivity(getPackageManager()) != null){
+                    startActivity(llamar);
+                }
+
+            }
+        });
 
         //ibtt.setOnClickListener(new View.OnClickListener() {
             //@Override
@@ -103,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
 
         ibtt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,7 +212,49 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "radioButton 2", Toast.LENGTH_SHORT).show();
             }
         });
+        toolbar = findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.ejercicio3,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+
+        if (id==R.id.mNuevo){
+            if (ch1.isChecked()){
+                Log.i("ch1Status","Ch1 checked");
+            }
+            if (ch2.isChecked()){
+                Log.i("ch2Status","Ch2 checked");
+            }
+            if (ch3.isChecked()){
+                Log.i("ch3Status","Ch3 checked");
+            }
+            return true;
+        }else if (id==R.id.mBorrar){
+            Toast.makeText(this, "Borrar", Toast.LENGTH_SHORT).show();
+            return true;
+        }else if (id==R.id.mEditar){
+            Toast.makeText(this, "Otro", Toast.LENGTH_SHORT).show();
+            return true;
+        }else if (id==R.id.mSub){
+            if (id == R.id.op1){
+                Toast.makeText(this, "Opcion 1 pulsada", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            if (id == R.id.op2){
+                Toast.makeText(this, "Opcion 2 pulsada", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+        };
+        return super.onOptionsItemSelected(item);
     }
 
 }
