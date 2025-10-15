@@ -221,10 +221,17 @@ public class MainActivity extends AppCompatActivity {
         menuInflater.inflate(R.menu.ejercicio3,menu);
         return true;
     }
+    Intent intMain = getIntent();
+    boolean ch11 = intMain.getBooleanExtra("ch1value",ch1.isChecked());
+    boolean ch22 = intMain.getBooleanExtra("ch2value",ch2.isChecked());
+    boolean ch33 = intMain.getBooleanExtra("ch3value",ch3.isChecked());
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
         if (id==R.id.mNuevo){
+            Intent lanzarEvento = new Intent(MainActivity.this, ampliarMain.class);
+            lanzarEvento.putExtra("",0);
+            startActivity(lanzarEvento);
             if (ch1.isChecked()){
                 Log.i("ch1Status","Ch1 checked");
             }

@@ -64,10 +64,9 @@ public class ampliarMain extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
-
-
+        Intent intent = new Intent(ampliarMain.this, MainActivity.class);
+        intent.getFloatExtra("ch1value",0);
+        intent.getFloatExtra("ch2value",0);
+        intent.getFloatExtra("ch3value",0);
     }
 }
