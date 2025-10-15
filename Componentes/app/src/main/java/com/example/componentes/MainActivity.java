@@ -215,7 +215,6 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater=getMenuInflater();
@@ -237,15 +236,16 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         }else if (id==R.id.mBorrar){
-
-            Toast.makeText(this, "Borrar", Toast.LENGTH_SHORT).show();
+            tv.setText("");
+            tv2.setText("");
+            tv3.setText("");
+            textViewLlamar.setText("");
+            sb.setProgress(0);
             return true;
         }else if (id==R.id.mEditar){
-
-            Toast.makeText(this, "Otro", Toast.LENGTH_SHORT).show();
+            ett.setText("");
             return true;
         }else if (id==R.id.mSub){
-
             if (id == R.id.op1){
                 Toast.makeText(this, "Opcion 1 pulsada", Toast.LENGTH_SHORT).show();
                 return true;
