@@ -225,7 +225,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id=item.getItemId();
-
         if (id==R.id.mNuevo){
             if (ch1.isChecked()){
                 Log.i("ch1Status","Ch1 checked");
@@ -238,12 +237,15 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         }else if (id==R.id.mBorrar){
+
             Toast.makeText(this, "Borrar", Toast.LENGTH_SHORT).show();
             return true;
         }else if (id==R.id.mEditar){
+
             Toast.makeText(this, "Otro", Toast.LENGTH_SHORT).show();
             return true;
         }else if (id==R.id.mSub){
+
             if (id == R.id.op1){
                 Toast.makeText(this, "Opcion 1 pulsada", Toast.LENGTH_SHORT).show();
                 return true;
