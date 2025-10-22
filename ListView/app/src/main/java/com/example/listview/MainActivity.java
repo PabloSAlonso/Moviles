@@ -1,14 +1,21 @@
 package com.example.listview;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -19,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ListView l;
     ArrayList<String> listaString = new ArrayList<>();
     ArrayAdapter<String> adapter;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +43,41 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < contactos.length; i++) {
             listaString.add(contactos[i]);
         }
-        adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_activated_1, listaString);
+        adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_multiple_choice, listaString);
         l.setAdapter(adapter);
         l.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Hemos borrado al: " + (position+1) + " con nombre " + listaString.get(position), Toast.LENGTH_LONG).show();
-                listaString.remove(position);
+                Toast.makeText(MainActivity.this, "Has seleccionado al numero:"+position+1, Toast.LENGTH_LONG).show();
                 adapter.notifyDataSetChanged();
             }
         });
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu,menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.borrar) {
+            for (int i = l.getCount() -1 ; i >=0 ;i--) {
+                if (l.isItemChecked(i)){
+                    listaString.remove(i);
+                }
+            }
+            l.getCheckedItemPositions().clear();
+            adapter.notifyDataSetChanged();
+        }
+        adapter.notifyDataSetChanged();
+        return false;
     }
 }
