@@ -1,3 +1,5 @@
+package com.example.listview;
+
 public class SistemaOperativo {
     private String nombre;
     // Nombre del sistema operativo
