@@ -7,13 +7,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
-public class RecyclerView extends AppCompatActivity {
+public class EjercicioRV extends AppCompatActivity {
     ArrayList<SistemaOperativo> sistemas;
     RecyclerView rv;
     MiAdaptador miAdaptador;
+    RecyclerView.LayoutManager miLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,10 @@ public class RecyclerView extends AppCompatActivity {
         rellenaDatos(10);
         miAdaptador=new MiAdaptador(sistemas);
         rv=findViewById(R.id.rv);
+        miLayoutManager = new GridLayoutManager(this, 3);
+        rv.setLayoutManager(miLayoutManager);
+        rv.setAdapter(miAdaptador);
+
 
     }
 
