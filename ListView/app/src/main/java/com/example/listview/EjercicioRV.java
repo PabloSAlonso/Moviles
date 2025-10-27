@@ -1,9 +1,15 @@
 package com.example.listview;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -16,6 +22,7 @@ public class EjercicioRV extends AppCompatActivity {
     RecyclerView rv;
     MiAdaptador miAdaptador;
     RecyclerView.LayoutManager miLayoutManager;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +40,41 @@ public class EjercicioRV extends AppCompatActivity {
         miLayoutManager = new GridLayoutManager(this, 3);
         rv.setLayoutManager(miLayoutManager);
         rv.setAdapter(miAdaptador);
+        toolbar = findViewById(R.id.toolbar2);
 
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //Asociar Menu
+        int pos = miAdaptador.selectedPos;
+        ActionBar ab = getSupportActionBar();
+        if (miAdaptador.getSelectedPos() != RecyclerView.NO_POSITION){
+            if (item.getItemId() == R.id.añadir){
+                sistemas.add(pos,new SistemaOperativo("nuevo" + pos, String.valueOf(pos),R.drawable.new_item));
+                miAdaptador.notifyItemInserted(pos);
+            } else if (item.getItemId() == R.id.borrar){
+                sistemas.remove(pos);
+                miAdaptador.notifyItemRemoved(pos);
+                miAdaptador.setSelectedPos(RecyclerView.NO_POSITION);
+            } else if (item.getItemId() == R.id.editar){
+                sistemas.get(pos).setNombre("Nombre Modificado");
+                miAdaptador.notifyItemChanged(pos);
+            } else if(item.getItemId() == R.id.mover){
+                SistemaOperativo aux = sistemas.get(pos);
+                int nuevaPos = 1;
+                sistemas.remove(pos);
+                sistemas.add(nuevaPos,aux);
+                miAdaptador.notifyItemChanged(pos);
+                miAdaptador.notifyItemMoved(pos,nuevaPos);
+                miAdaptador.setSelectedPos(nuevaPos);
+
+            }
+        } else {
+            Log.i("ERROR MENU", "POSICION NO SELECCIONADA");
+        }
+        ab.setTitle("Tam: " + sistemas.size());
+        ab.setSubtitle("Pos: " + miAdaptador.getSelectedPos());
+        return true;
     }
 
     public void rellenaDatos(int vueltas) {
