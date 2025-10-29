@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">List View</string>
+    <string-array name="miSpinner">
+        <item>Español</item>
+        <item>Marroqui</item>
+        <item>Inglés</item>
+        <item>Alemán</item>
+        <item>Panchudo</item>
+    </string-array>
 </resources>
