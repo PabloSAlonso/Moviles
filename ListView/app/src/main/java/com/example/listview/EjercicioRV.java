@@ -2,6 +2,8 @@ package com.example.listview;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -41,18 +43,25 @@ public class EjercicioRV extends AppCompatActivity {
         rv.setLayoutManager(miLayoutManager);
         rv.setAdapter(miAdaptador);
         toolbar = findViewById(R.id.toolbar2);
-
+        setSupportActionBar(toolbar);
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) { //Asociar Menu
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.menurecyclerview,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int pos = miAdaptador.selectedPos;
         ActionBar ab = getSupportActionBar();
         if (miAdaptador.getSelectedPos() != RecyclerView.NO_POSITION){
             if (item.getItemId() == R.id.añadir){
                 sistemas.add(pos,new SistemaOperativo("nuevo" + pos, String.valueOf(pos),R.drawable.new_item));
                 miAdaptador.notifyItemInserted(pos);
-            } else if (item.getItemId() == R.id.borrar){
+            } else if (item.getItemId() == R.id.eliminar){
                 sistemas.remove(pos);
                 miAdaptador.notifyItemRemoved(pos);
                 miAdaptador.setSelectedPos(RecyclerView.NO_POSITION);
@@ -61,7 +70,7 @@ public class EjercicioRV extends AppCompatActivity {
                 miAdaptador.notifyItemChanged(pos);
             } else if(item.getItemId() == R.id.mover){
                 SistemaOperativo aux = sistemas.get(pos);
-                int nuevaPos = 1;
+                int nuevaPos = 0;
                 sistemas.remove(pos);
                 sistemas.add(nuevaPos,aux);
                 miAdaptador.notifyItemChanged(pos);
