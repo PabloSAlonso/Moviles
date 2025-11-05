@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.PointerIcon;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView.LayoutManager miLayoutManager;
     MiAdaptador miAdaptador;
     ArrayList<Pelicula>peliculas;
+    ActionBar ab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +48,16 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(miAdaptador);
         tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
-
+        boton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ab.isShowing()){
+                    ab.hide();
+                } else {
+                    ab.show();
+                }
+            }
+        });
     }
 
     @Override
@@ -57,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        ActionBar ab = getSupportActionBar();
+        ab = getSupportActionBar();
         return super.onOptionsItemSelected(item);
     }
+
 }
