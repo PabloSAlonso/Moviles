@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -13,11 +14,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView rv;
     Toolbar tb;
+    Button boton;
+    RecyclerView.LayoutManager miLayoutManager;
+    MiAdaptador miAdaptador;
+    ArrayList<Pelicula>peliculas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +36,16 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        peliculas = Datos.rellenaPeliculas();
+        miAdaptador = new MiAdaptador(peliculas);
+        boton = findViewById(R.id.btnActionBar);
         rv = findViewById(R.id.recyclerView);
+        miLayoutManager =new GridLayoutManager(this, 1);
+        rv.setLayoutManager(miLayoutManager);
+        rv.setAdapter(miAdaptador);
         tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
+
     }
 
     @Override
