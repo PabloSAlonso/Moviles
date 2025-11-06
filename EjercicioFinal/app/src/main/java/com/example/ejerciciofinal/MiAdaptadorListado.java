@@ -41,8 +41,42 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView tvDir, tvDur,tvSala,tvFech;
+        ImageView ivCaratula, ivEdad, ivFavs;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvDir = itemView.findViewById(R.id.tvDirector);
+            tvDur = itemView.findViewById(R.id.tvDuracion);
+            tvSala = itemView.findViewById(R.id.tvSala);
+            tvFech = itemView.findViewById(R.id.tvFecha);
+            ivCaratula = itemView.findViewById(R.id.ivCaratula);
+            ivEdad = itemView.findViewById(R.id.ivEdad);
+            ivFavs = itemView.findViewById(R.id.ivFav);
+        }
+        public TextView getTvDir(){
+            return tvDir;
+        }
+        public TextView getTvDur(){
+            return tvDur;
+        }
+        public TextView getTvSala(){
+            return tvSala;
+        }
+        public TextView getTvFech(){
+            return tvFech;
+        }
+        public ImageView getIvCaratula(){
+            return ivCaratula;
+        }
+        public ImageView getIvEdad(){
+            return ivCaratula;
+        }
+        public ImageView getIvFavs(){
+            //Hay que ver si esa peli está en favoritos para decidir si cogemos
+            // esta imageview o no (creo)
+            //if (listaFavs.contains(pelicula)) {
+                return ivFavs;
+            //}
         }
     }
 

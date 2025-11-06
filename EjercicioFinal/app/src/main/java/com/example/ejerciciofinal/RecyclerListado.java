@@ -5,21 +5,29 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.Toolbar;
+
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class RecyclerListado extends AppCompatActivity {
     RecyclerView rvLs;
     Toolbar tbLs;
     RecyclerView.LayoutManager miLayoutManagerListado;
     ImageView iv1, iv2, iv3;
+    MiAdaptadorListado miAdaptadorListado;
+    ArrayList<Pelicula>peliculas;
 
+    RecyclerView.LayoutManager miLayoutManagerLs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +38,14 @@ public class RecyclerListado extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        peliculas = Datos.rellenaPeliculas();
         rvLs = findViewById(R.id.recyclerViewListado);
         tbLs = findViewById(R.id.toolbarListado);
+        miAdaptadorListado = new MiAdaptadorListado(peliculas);
+        miLayoutManagerLs =new GridLayoutManager(this, 1);
+        rvLs.setLayoutManager(miLayoutManagerLs);
+        rvLs.setAdapter(miAdaptadorListado);
+        setSupportActionBar(tbLs);
 
     }
 
@@ -45,8 +58,10 @@ public class RecyclerListado extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
+        ActionBar abLs = getSupportActionBar();
+        abLs.setDisplayHomeAsUpEnabled(true);
+        int id = item.getItemId();
+        if(item.getItemId() ==  android.R.id.home ) {
                 onBackPressed();
                 return true;
         }
