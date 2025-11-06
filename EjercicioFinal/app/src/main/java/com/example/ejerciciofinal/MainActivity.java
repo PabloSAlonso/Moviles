@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.PointerIcon;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -24,7 +26,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     RecyclerView rv;
     Toolbar tb;
-    Button boton;
+    ImageButton boton;
     RecyclerView.LayoutManager miLayoutManager;
     MiAdaptador miAdaptador;
     ArrayList<Pelicula>peliculas;
@@ -53,8 +55,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(ab.isShowing()){
                     ab.hide();
+                    boton.setImageResource(R.drawable.g);
                 } else {
                     ab.show();
+                    boton.setImageResource(R.drawable.r);
                 }
             }
         });

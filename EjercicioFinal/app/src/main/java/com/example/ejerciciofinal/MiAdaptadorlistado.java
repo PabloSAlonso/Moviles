@@ -1,5 +1,5 @@
 package com.example.ejerciciofinal;
 
-public class RecyclerOp1 {
+public class MiAdaptadorlistado {
 
 }
