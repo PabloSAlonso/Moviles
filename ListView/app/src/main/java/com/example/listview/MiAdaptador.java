@@ -34,6 +34,7 @@ public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MyViewHolder>{
             }
             this.selectedPos = selectedPos;
             notifyItemChanged(selectedPos);
+
         }
 
     }
