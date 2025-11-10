@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResult;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     MiAdaptador miAdaptador;
     ArrayList<Pelicula>peliculas;
     ActionBar ab;
+    TextView seccionFija;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(miAdaptador);
         tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
+        seccionFija = findViewById(R.id.tvSeccionFija);
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

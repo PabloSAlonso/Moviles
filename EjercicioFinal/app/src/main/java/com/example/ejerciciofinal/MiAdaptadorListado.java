@@ -35,7 +35,7 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View elemento = LayoutInflater.from(parent.getContext()).inflate(R.layout.celda,parent,false);
+        View elemento = LayoutInflater.from(parent.getContext()).inflate(R.layout.celda2,parent,false);
         MyViewHolder mvh = new MyViewHolder(elemento);
         return mvh;
     }
@@ -69,14 +69,11 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
             return ivCaratula;
         }
         public ImageView getIvEdad(){
-            return ivCaratula;
+            return ivEdad;
         }
         public ImageView getIvFavs(){
-            //Hay que ver si esa peli está en favoritos para decidir si cogemos
-            // esta imageview o no (creo)
-            //if (listaFavs.contains(pelicula)) {
-                return ivFavs;
-            //}
+            return ivFavs;
+
         }
     }
 
@@ -84,6 +81,18 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
     @Override
     public void onBindViewHolder(@NonNull MiAdaptadorListado.MyViewHolder holder, int position) {
         Pelicula p = this.peliculas.get(position);
+        holder.getTvDir().setText(p.getDirector());
+        holder.getTvDur().setText(p.getDuracion()+"");
+        holder.getTvFech().setText(p.getFecha()+"");
+        holder.getTvSala().setText(p.getSala());
+        holder.getIvCaratula().setImageResource(p.getPortada());
+        holder.getIvEdad().setImageResource(p.getClasi());
+        if (p.getFavorita()){
+            holder.getIvFavs().setImageResource(R.drawable.iconofav);
+        } else {
+            holder.getIvFavs().setImageResource(R.drawable.nofavorita);
+        }
+
         if (selectedPos == position){
             holder.itemView.setBackgroundResource(R.color.gray);
         } else {
