@@ -1,11 +1,12 @@
 package com.example.ejerciciofinal;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,10 +15,11 @@ import java.util.ArrayList;
 
 public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.MyViewHolder> {
     ArrayList<Pelicula> peliculas;
+    Context contexto;
 
-
-    public MiAdaptadorListado(ArrayList<Pelicula> peliculas){
+    public MiAdaptadorListado(ArrayList<Pelicula> peliculas, Context contexto){
         this.peliculas =peliculas;
+        this.contexto = contexto;
     }
     int selectedPos = RecyclerView.NO_POSITION;
     public int getSelectedPos() {
@@ -52,9 +54,18 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
             tvDur = itemView.findViewById(R.id.tvDuracion);
             tvSala = itemView.findViewById(R.id.tvSala);
             tvFech = itemView.findViewById(R.id.tvFecha);
-            ivCaratula = itemView.findViewById(R.id.ivCaratula);
+            ivCaratula = itemView.findViewById(R.id.ivCaratulaLanzada);
             ivEdad = itemView.findViewById(R.id.ivEdad);
             ivFavs = itemView.findViewById(R.id.ivFav);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int selectedPos = getAdapterPosition();
+                    setSelectedPos(selectedPos);
+                    Intent lanzarNuevoActivity = new Intent(contexto, ActividadListado.class);
+
+                }
+            });
         }
         public TextView getTvDir(){
             return tvDir;
