@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -37,10 +39,20 @@ public class ListadoFavoritos extends AppCompatActivity {
         });
         peliculas = Datos.rellenaPeliculas();
         listadoFav = findViewById(R.id.listadoFavs);
+        tb = findViewById(R.id.tbFavs);
         setSupportActionBar(tb);
         ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
         adapter = new ArrayAdapter<>(ListadoFavoritos.this, android.R.layout.simple_list_item_multiple_choice, peliculas);
+        listadoFav.setAdapter(adapter);
+        listadoFav.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        listadoFav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                adapter.notifyDataSetChanged();
+            }
+        });
 
     }
 
@@ -53,6 +65,11 @@ public class ListadoFavoritos extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if(id == android.R.id.home ) {
+            onBackPressed();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }
