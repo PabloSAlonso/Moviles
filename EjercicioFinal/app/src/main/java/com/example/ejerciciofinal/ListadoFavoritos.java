@@ -49,7 +49,7 @@ public class ListadoFavoritos extends AppCompatActivity {
         listadoFav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                //Hacer el set de Fav a true si se pulsa
                 adapter.notifyDataSetChanged();
             }
         });
