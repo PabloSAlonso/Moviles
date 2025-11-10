@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         peliculas = Datos.rellenaPeliculas();
-        miAdaptador = new MiAdaptador(peliculas);
+        seccionFija = findViewById(R.id.tvSeccionFija);
+        miAdaptador = new MiAdaptador(peliculas, seccionFija);
         boton = findViewById(R.id.btnActionBar);
         rv = findViewById(R.id.recyclerView);
         miLayoutManager =new GridLayoutManager(this, 1);
@@ -58,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(miAdaptador);
         tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
-        seccionFija = findViewById(R.id.tvSeccionFija);
+        ab = getSupportActionBar();
+
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,10 +85,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        ab = getSupportActionBar();
         if (item.getItemId() == R.id.listado){
             Intent lanzarListado = new Intent(MainActivity.this, RecyclerListado.class);
             startActivity(lanzarListado);
+        }
+        if (miAdaptador.getSelectedPos() != RecyclerView.NO_POSITION){
+
+
+
+        } else {
+
+        Log.i("ERROR MENU", "POSICION NO SELECCIONADA");
         }
         return super.onOptionsItemSelected(item);
     }

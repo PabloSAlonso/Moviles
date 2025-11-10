@@ -13,8 +13,11 @@ import java.util.ArrayList;
 
 public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MyViewHolder> {
     ArrayList<Pelicula> peliculas;
-    public MiAdaptador(ArrayList<Pelicula> peliculas){
-        this.peliculas =peliculas;
+    TextView Fija;
+
+    public MiAdaptador(ArrayList<Pelicula> peliculas, TextView Fija){
+        this.peliculas = peliculas;
+        this.Fija = Fija;
     }
     int selectedPos =RecyclerView.NO_POSITION;
     public int getSelectedPos() {
@@ -49,6 +52,14 @@ public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MyViewHolder> 
             tvDirector = viewElemento.findViewById(R.id.textView2);
             imageView = viewElemento.findViewById(R.id.imageView);
             imageView2 = viewElemento.findViewById(R.id.imageView2);
+            viewElemento.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                int posPulsada =getAdapterPosition();
+                setSelectedPos(posPulsada);
+                Fija.setText(peliculas.get(posPulsada).getTitulo());
+                }
+            });
         }
         public TextView obtenerNombre(){
             return tvNombre;
@@ -73,6 +84,7 @@ public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MyViewHolder> 
         holder.obtenerEdad().setImageResource(p.getClasi());
         if (selectedPos == position){
             holder.itemView.setBackgroundResource(R.color.gray);
+
         } else {
             holder.itemView.setBackgroundResource(R.color.green);
         }

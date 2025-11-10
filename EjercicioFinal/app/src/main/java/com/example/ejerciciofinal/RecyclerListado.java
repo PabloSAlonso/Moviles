@@ -22,8 +22,6 @@ import java.util.ArrayList;
 public class RecyclerListado extends AppCompatActivity {
     RecyclerView rvLs;
     Toolbar tbLs;
-    RecyclerView.LayoutManager miLayoutManagerListado;
-    ImageView iv1, iv2, iv3;
     MiAdaptadorListado miAdaptadorListado;
     ArrayList<Pelicula>peliculas;
 
@@ -61,9 +59,9 @@ public class RecyclerListado extends AppCompatActivity {
         ActionBar abLs = getSupportActionBar();
         abLs.setDisplayHomeAsUpEnabled(true);
         int id = item.getItemId();
-        if(item.getItemId() ==  android.R.id.home ) {
-                onBackPressed();
-                return true;
+        if(id ==  android.R.id.home ) {
+            onBackPressed();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
