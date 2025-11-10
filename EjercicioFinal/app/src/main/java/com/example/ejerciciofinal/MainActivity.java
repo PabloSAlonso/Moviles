@@ -89,14 +89,7 @@ public class MainActivity extends AppCompatActivity {
             Intent lanzarListado = new Intent(MainActivity.this, RecyclerListado.class);
             startActivity(lanzarListado);
         }
-        if (miAdaptador.getSelectedPos() != RecyclerView.NO_POSITION){
 
-
-
-        } else {
-
-        Log.i("ERROR MENU", "POSICION NO SELECCIONADA");
-        }
         return super.onOptionsItemSelected(item);
     }
 
