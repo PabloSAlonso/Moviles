@@ -42,7 +42,8 @@ public class ListadoFavoritos extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        peliculas = Datos.rellenaPeliculas();
+        Intent intent = getIntent();
+        peliculas = (ArrayList<Pelicula>) intent.getSerializableExtra("pelis");
         ArrayList<String> tituloYdir = new ArrayList<>();
         for (int i = 0; i < peliculas.size(); i++) {
             tituloYdir.add(String.format("Título: %s, Director: %s", peliculas.get(i).titulo, peliculas.get(i).director));
@@ -75,19 +76,7 @@ public class ListadoFavoritos extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-        ActivityResultLauncher<Intent> launcher = registerForActivityResult(new
-                ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-            @Override
-            public void onActivityResult(ActivityResult result) {
-                if (result.getResultCode()==RESULT_OK){
-                    Intent devolverFavs = result.getData();
-                    for (int i = 0; i < peliculas.size(); i++) {
-                        //Pasar clave
-                        peliculas.get(i).favorita = (boolean)devolverFavs.getBooleanExtra("",peliculas.get(i).getFavorita()) ;
-                    }
-                }
-            }
-        });
+
     }
 
     @Override

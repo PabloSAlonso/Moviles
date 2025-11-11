@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Pelicula>peliculas;
     ActionBar ab;
     TextView seccionFija;
+    ActivityResultLauncher<Intent> launcher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +74,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+         launcher = registerForActivityResult(new
+                ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode()==RESULT_OK){
+                    Intent devolverFavs = result.getData();
+
+
+                }
+            }
+        });
 
     }
 
@@ -90,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(lanzarListado);
         } else if(item.getItemId() == R.id.favoritos){
             Intent lanzarFavoritos = new Intent(MainActivity.this, ListadoFavoritos.class);
-            startActivity(lanzarFavoritos);
+            lanzarFavoritos.putExtra("pelis",peliculas);
+            launcher.launch(lanzarFavoritos);
         }
 
 

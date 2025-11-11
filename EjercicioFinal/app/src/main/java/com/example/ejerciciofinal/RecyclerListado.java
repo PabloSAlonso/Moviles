@@ -1,5 +1,6 @@
 package com.example.ejerciciofinal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -60,9 +61,16 @@ public class RecyclerListado extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-        if(id ==  android.R.id.home ) {
+
+        if(id == android.R.id.home ) {
             onBackPressed();
             return true;
+        }
+        if (id == R.id.guardarCambios){
+            Intent intentDevuelve = new Intent();
+            intentDevuelve.putExtra("pelis", peliculas);
+            setResult(RESULT_OK, intentDevuelve);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

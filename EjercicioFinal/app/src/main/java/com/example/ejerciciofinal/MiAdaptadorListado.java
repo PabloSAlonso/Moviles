@@ -64,7 +64,6 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
                     setSelectedPos(selectedPos);
                     Intent lanzarNuevoActivity = new Intent(contexto, ActividadListado.class);
 
-
                 }
             });
         }
@@ -102,8 +101,10 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
         holder.getTvSala().setText(p.getSala());
         holder.getIvCaratula().setImageResource(p.getPortada());
         holder.getIvEdad().setImageResource(p.getClasi());
+        Intent devolverListView = new Intent();
+        devolverListView.getBooleanExtra("Favs", p.getFavorita());
         if (p.getFavorita()){
-            holder.getIvFavs().setImageResource(R.drawable.iconofav);
+            holder.getIvFavs().setImageResource(R.drawable.star);
         } else {
             holder.getIvFavs().setImageResource(0);
         }
