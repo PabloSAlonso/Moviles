@@ -64,6 +64,7 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
                     setSelectedPos(selectedPos);
                     Intent lanzarNuevoActivity = new Intent(contexto, ActividadListado.class);
 
+
                 }
             });
         }
@@ -104,7 +105,7 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
         if (p.getFavorita()){
             holder.getIvFavs().setImageResource(R.drawable.iconofav);
         } else {
-            holder.getIvFavs().setImageResource(R.drawable.nofavorita);
+            holder.getIvFavs().setImageResource(0);
         }
 
         if (selectedPos == position){

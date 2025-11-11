@@ -88,7 +88,11 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.listado){
             Intent lanzarListado = new Intent(MainActivity.this, RecyclerListado.class);
             startActivity(lanzarListado);
+        } else if(item.getItemId() == R.id.favoritos){
+            Intent lanzarFavoritos = new Intent(MainActivity.this, ListadoFavoritos.class);
+            startActivity(lanzarFavoritos);
         }
+
 
         return super.onOptionsItemSelected(item);
     }

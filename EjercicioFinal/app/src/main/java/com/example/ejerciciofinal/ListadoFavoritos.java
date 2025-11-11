@@ -1,5 +1,6 @@
 package com.example.ejerciciofinal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,6 +12,10 @@ import android.widget.ListView;
 
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +31,7 @@ public class ListadoFavoritos extends AppCompatActivity {
     Toolbar tb;
     ActionBar ab;
     ArrayList<Pelicula>peliculas;
-    ArrayAdapter<Pelicula> adapter;
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,22 +43,51 @@ public class ListadoFavoritos extends AppCompatActivity {
             return insets;
         });
         peliculas = Datos.rellenaPeliculas();
+        ArrayList<String> tituloYdir = new ArrayList<>();
+        for (int i = 0; i < peliculas.size(); i++) {
+            tituloYdir.add(String.format("Título: %s, Director: %s", peliculas.get(i).titulo, peliculas.get(i).director));
+        }
         listadoFav = findViewById(R.id.listadoFavs);
         tb = findViewById(R.id.tbFavs);
         setSupportActionBar(tb);
         ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        adapter = new ArrayAdapter<>(ListadoFavoritos.this, android.R.layout.simple_list_item_multiple_choice, peliculas);
+        adapter = new ArrayAdapter<>(ListadoFavoritos.this, android.R.layout.simple_list_item_multiple_choice, tituloYdir);
         listadoFav.setAdapter(adapter);
         listadoFav.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        for (int i = 0; i < peliculas.size(); i++) {
+            if (peliculas.get(i).getFavorita()){
+                listadoFav.setItemChecked(i, true);
+                adapter.notifyDataSetChanged();
+            }
+        }
         listadoFav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Hacer el set de Fav a true si se pulsa
+
+                if (listadoFav.isItemChecked(position)){
+                    peliculas.get(position).setFavorita(true);
+                    adapter.notifyDataSetChanged();
+                } else {
+                    peliculas.get(position).setFavorita(false);
+                    adapter.notifyDataSetChanged();
+                }
                 adapter.notifyDataSetChanged();
             }
         });
-
+        ActivityResultLauncher<Intent> launcher = registerForActivityResult(new
+                ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode()==RESULT_OK){
+                    Intent devolverFavs = result.getData();
+                    for (int i = 0; i < peliculas.size(); i++) {
+                        //Pasar clave
+                        peliculas.get(i).favorita = (boolean)devolverFavs.getBooleanExtra("",peliculas.get(i).getFavorita()) ;
+                    }
+                }
+            }
+        });
     }
 
     @Override
