@@ -70,14 +70,10 @@ public class ListadoFavoritos extends AppCompatActivity {
         listadoFav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (listadoFav.isItemChecked(position)){
-                    peliculas.get(position).setFavorita(true);
-                    adapter.notifyDataSetChanged();
-                } else {
-                    peliculas.get(position).setFavorita(false);
+                for (int i = 0; i < listadoFav.getCheckedItemPositions().size(); i++){
+                    peliculas.get(i).setFavorita(true);
                     adapter.notifyDataSetChanged();
                 }
-                adapter.notifyDataSetChanged();
             }
         });
 

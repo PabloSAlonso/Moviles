@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         peliculasAux = new ArrayList<>();
-
         peliculas = Datos.rellenaPeliculas();
         seccionFija = findViewById(R.id.tvSeccionFija);
         miAdaptador = new MiAdaptador(peliculas, seccionFija);
@@ -82,9 +81,7 @@ public class MainActivity extends AppCompatActivity {
             public void onActivityResult(ActivityResult o) {
                 if (o.getResultCode() == RESULT_OK){
                     Intent i = o.getData();
-
                     peliculasAux = (ArrayList<Pelicula>) i.getSerializableExtra("pelis_nuevas_favs");
-
                     peliculas.clear();
                     peliculas.addAll(peliculasAux);
                 }

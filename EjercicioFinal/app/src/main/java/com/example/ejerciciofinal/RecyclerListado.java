@@ -53,6 +53,7 @@ public class RecyclerListado extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_volver,menu);
+
         return super.onCreateOptionsMenu(menu);
     }
 
