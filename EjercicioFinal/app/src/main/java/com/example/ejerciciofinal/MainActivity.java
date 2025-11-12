@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResult;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     MiAdaptador miAdaptador;
     ArrayList<Pelicula>peliculas;
     ActionBar ab;
+    TextView seccionFija;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         peliculas = Datos.rellenaPeliculas();
-        miAdaptador = new MiAdaptador(peliculas);
+        seccionFija = findViewById(R.id.tvSeccionFija);
+        miAdaptador = new MiAdaptador(peliculas, seccionFija);
         boton = findViewById(R.id.btnActionBar);
         rv = findViewById(R.id.recyclerView);
         miLayoutManager =new GridLayoutManager(this, 1);
@@ -56,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(miAdaptador);
         tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
+        ab = getSupportActionBar();
+
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,11 +85,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        ab = getSupportActionBar();
         if (item.getItemId() == R.id.listado){
             Intent lanzarListado = new Intent(MainActivity.this, RecyclerListado.class);
             startActivity(lanzarListado);
+        } else if(item.getItemId() == R.id.favoritos){
+            Intent lanzarFavoritos = new Intent(MainActivity.this, ListadoFavoritos.class);
+            startActivity(lanzarFavoritos);
         }
+
+
         return super.onOptionsItemSelected(item);
     }
 

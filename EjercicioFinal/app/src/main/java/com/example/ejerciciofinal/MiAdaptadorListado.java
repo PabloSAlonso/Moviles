@@ -1,5 +1,7 @@
 package com.example.ejerciciofinal;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +15,11 @@ import java.util.ArrayList;
 
 public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.MyViewHolder> {
     ArrayList<Pelicula> peliculas;
-    public MiAdaptadorListado(ArrayList<Pelicula> peliculas){
+    Context contexto;
+
+    public MiAdaptadorListado(ArrayList<Pelicula> peliculas, Context contexto){
         this.peliculas =peliculas;
+        this.contexto = contexto;
     }
     int selectedPos = RecyclerView.NO_POSITION;
     public int getSelectedPos() {
@@ -35,7 +40,7 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View elemento = LayoutInflater.from(parent.getContext()).inflate(R.layout.celda,parent,false);
+        View elemento = LayoutInflater.from(parent.getContext()).inflate(R.layout.celda2,parent,false);
         MyViewHolder mvh = new MyViewHolder(elemento);
         return mvh;
     }
@@ -49,9 +54,19 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
             tvDur = itemView.findViewById(R.id.tvDuracion);
             tvSala = itemView.findViewById(R.id.tvSala);
             tvFech = itemView.findViewById(R.id.tvFecha);
-            ivCaratula = itemView.findViewById(R.id.ivCaratula);
+            ivCaratula = itemView.findViewById(R.id.ivCaratulaLanzada);
             ivEdad = itemView.findViewById(R.id.ivEdad);
             ivFavs = itemView.findViewById(R.id.ivFav);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int selectedPos = getAdapterPosition();
+                    setSelectedPos(selectedPos);
+                    Intent lanzarNuevoActivity = new Intent(contexto, ActividadListado.class);
+
+
+                }
+            });
         }
         public TextView getTvDir(){
             return tvDir;
@@ -69,14 +84,11 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
             return ivCaratula;
         }
         public ImageView getIvEdad(){
-            return ivCaratula;
+            return ivEdad;
         }
         public ImageView getIvFavs(){
-            //Hay que ver si esa peli está en favoritos para decidir si cogemos
-            // esta imageview o no (creo)
-            //if (listaFavs.contains(pelicula)) {
-                return ivFavs;
-            //}
+            return ivFavs;
+
         }
     }
 
@@ -84,6 +96,18 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
     @Override
     public void onBindViewHolder(@NonNull MiAdaptadorListado.MyViewHolder holder, int position) {
         Pelicula p = this.peliculas.get(position);
+        holder.getTvDir().setText(p.getDirector());
+        holder.getTvDur().setText(p.getDuracion()+"");
+        holder.getTvFech().setText(p.getFecha()+"");
+        holder.getTvSala().setText(p.getSala());
+        holder.getIvCaratula().setImageResource(p.getPortada());
+        holder.getIvEdad().setImageResource(p.getClasi());
+        if (p.getFavorita()){
+            holder.getIvFavs().setImageResource(R.drawable.iconofav);
+        } else {
+            holder.getIvFavs().setImageResource(0);
+        }
+
         if (selectedPos == position){
             holder.itemView.setBackgroundResource(R.color.gray);
         } else {

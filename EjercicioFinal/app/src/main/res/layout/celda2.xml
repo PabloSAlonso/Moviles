@@ -11,7 +11,7 @@
         android:layout_height="19dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivCaratula" />
+        app:layout_constraintTop_toBottomOf="@+id/ivCaratulaLanzada" />
 
     <TextView
         android:id="@+id/tvFecha"
@@ -19,7 +19,7 @@
         android:layout_height="19dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/tvDirector"
-        app:layout_constraintTop_toBottomOf="@+id/ivCaratula" />
+        app:layout_constraintTop_toBottomOf="@+id/ivCaratulaLanzada" />
 
     <TextView
         android:id="@+id/tvDuracion"
@@ -43,11 +43,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/tvSala"
         app:layout_constraintStart_toEndOf="@+id/tvFecha"
-        app:layout_constraintTop_toBottomOf="@+id/ivCaratula"
+        app:layout_constraintTop_toBottomOf="@+id/ivCaratulaLanzada"
         app:srcCompat="@drawable/pg" />
 
     <ImageView
-        android:id="@+id/ivCaratula"
+        android:id="@+id/ivCaratulaLanzada"
         android:layout_width="119dp"
         android:layout_height="118dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         android:id="@+id/ivFav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/ivCaratula"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDuracion"
         app:srcCompat="@android:drawable/btn_star_big_on" />
 </androidx.constraintlayout.widget.ConstraintLayout>

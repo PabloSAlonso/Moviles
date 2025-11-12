@@ -22,10 +22,9 @@ import java.util.ArrayList;
 public class RecyclerListado extends AppCompatActivity {
     RecyclerView rvLs;
     Toolbar tbLs;
-    RecyclerView.LayoutManager miLayoutManagerListado;
-    ImageView iv1, iv2, iv3;
     MiAdaptadorListado miAdaptadorListado;
     ArrayList<Pelicula>peliculas;
+    ActionBar abLs;
 
     RecyclerView.LayoutManager miLayoutManagerLs;
     @Override
@@ -41,12 +40,13 @@ public class RecyclerListado extends AppCompatActivity {
         peliculas = Datos.rellenaPeliculas();
         rvLs = findViewById(R.id.recyclerViewListado);
         tbLs = findViewById(R.id.toolbarListado);
-        miAdaptadorListado = new MiAdaptadorListado(peliculas);
+        miAdaptadorListado = new MiAdaptadorListado(peliculas, this);
         miLayoutManagerLs =new GridLayoutManager(this, 1);
         rvLs.setLayoutManager(miLayoutManagerLs);
         rvLs.setAdapter(miAdaptadorListado);
         setSupportActionBar(tbLs);
-
+        abLs = getSupportActionBar();
+        abLs.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -58,12 +58,11 @@ public class RecyclerListado extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        ActionBar abLs = getSupportActionBar();
-        abLs.setDisplayHomeAsUpEnabled(true);
+
         int id = item.getItemId();
-        if(item.getItemId() ==  android.R.id.home ) {
-                onBackPressed();
-                return true;
+        if(id ==  android.R.id.home ) {
+            onBackPressed();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
