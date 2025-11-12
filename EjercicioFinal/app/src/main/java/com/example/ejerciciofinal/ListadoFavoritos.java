@@ -34,6 +34,7 @@ public class ListadoFavoritos extends AppCompatActivity {
     ActionBar ab;
     ArrayList<Pelicula>peliculas;
     ArrayAdapter<String> adapter;
+    ActivityResultLauncher<Intent> launcher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,12 +66,10 @@ public class ListadoFavoritos extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         }
-        Intent vuelvenAlMain = new Intent();
-        setResult(RESULT_OK);
+        //
         listadoFav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 if (listadoFav.isItemChecked(position)){
                     peliculas.get(position).setFavorita(true);
                     adapter.notifyDataSetChanged();
@@ -99,7 +98,12 @@ public class ListadoFavoritos extends AppCompatActivity {
             return true;
         } else if (id == R.id.volverGuardando) {
             //Actividad que devuelve las nuevas pelis chequeadas
+            Intent vuelvenAlMain = new Intent();
+            vuelvenAlMain.putExtra("pelis_nuevas_favs", peliculas);
+            setResult(RESULT_OK, vuelvenAlMain);
+            finish();
 
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

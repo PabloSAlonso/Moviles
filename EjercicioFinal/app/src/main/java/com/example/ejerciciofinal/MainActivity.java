@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView.LayoutManager miLayoutManager;
     MiAdaptador miAdaptador;
     ArrayList<Pelicula>peliculas;
+    ArrayList<Pelicula>peliculasAux;
     ActionBar ab;
     TextView seccionFija;
     ActivityResultLauncher<Intent> launcher;
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        peliculasAux = new ArrayList<>();
+
         peliculas = Datos.rellenaPeliculas();
         seccionFija = findViewById(R.id.tvSeccionFija);
         miAdaptador = new MiAdaptador(peliculas, seccionFija);
@@ -74,6 +77,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult o) {
+                if (o.getResultCode() == RESULT_OK){
+                    Intent i = o.getData();
+
+                    peliculasAux = (ArrayList<Pelicula>) i.getSerializableExtra("pelis_nuevas_favs");
+
+                    peliculas.clear();
+                    peliculas.addAll(peliculasAux);
+                }
+            }
+        });
 
     }
 
@@ -90,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
             Intent lanzarListado = new Intent(MainActivity.this, RecyclerListado.class);
             startActivity(lanzarListado);
         } else if(item.getItemId() == R.id.favoritos){
+
             Intent devolverPelis = new Intent(MainActivity.this, ListadoFavoritos.class);
             devolverPelis.putExtra("pelis",peliculas);
             launcher.launch(devolverPelis);

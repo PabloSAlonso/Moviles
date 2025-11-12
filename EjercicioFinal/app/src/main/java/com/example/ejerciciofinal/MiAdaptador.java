@@ -18,7 +18,7 @@ public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MyViewHolder> 
         this.peliculas = peliculas;
         this.fija = fija;
     }
-    int selectedPos =RecyclerView.NO_POSITION;
+    int selectedPos = RecyclerView.NO_POSITION;
     public int getSelectedPos() {
         return selectedPos;
     }
