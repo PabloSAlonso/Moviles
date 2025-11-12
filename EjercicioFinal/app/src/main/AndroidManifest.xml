@@ -13,6 +13,9 @@
         android:theme="@style/Theme.EjercicioFinal"
         tools:targetApi="31">
         <activity
+            android:name=".ActividadListado"
+            android:exported="false" />
+        <activity
             android:name=".RecyclerListado"
             android:exported="false" />
         <activity

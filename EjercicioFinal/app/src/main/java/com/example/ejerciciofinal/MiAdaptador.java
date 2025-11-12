@@ -13,8 +13,10 @@ import java.util.ArrayList;
 
 public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MyViewHolder> {
     ArrayList<Pelicula> peliculas;
-    public MiAdaptador(ArrayList<Pelicula> peliculas){
-        this.peliculas =peliculas;
+    TextView fija;
+    public MiAdaptador(ArrayList<Pelicula> peliculas, TextView fija){
+        this.peliculas = peliculas;
+        this.fija = fija;
     }
     int selectedPos =RecyclerView.NO_POSITION;
     public int getSelectedPos() {
