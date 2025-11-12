@@ -51,6 +51,13 @@ public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MyViewHolder> 
             tvDirector = viewElemento.findViewById(R.id.textView2);
             imageView = viewElemento.findViewById(R.id.imageView);
             imageView2 = viewElemento.findViewById(R.id.imageView2);
+            viewElemento.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int selectedPos = getAdapterPosition();
+                    setSelectedPos(selectedPos);
+                }
+            });
         }
         public TextView obtenerNombre(){
             return tvNombre;
@@ -75,6 +82,7 @@ public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.MyViewHolder> 
         holder.obtenerEdad().setImageResource(p.getClasi());
         if (selectedPos == position){
             holder.itemView.setBackgroundResource(R.color.gray);
+            fija.setText(p.getTitulo());
         } else {
             holder.itemView.setBackgroundResource(R.color.green);
         }

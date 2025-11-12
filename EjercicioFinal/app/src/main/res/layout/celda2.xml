@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tvDirector"
@@ -41,9 +41,9 @@
         android:id="@+id/ivEdad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/tvSala"
-        app:layout_constraintStart_toEndOf="@+id/tvFecha"
-        app:layout_constraintTop_toBottomOf="@+id/ivCaratulaLanzada"
+        app:layout_constraintEnd_toStartOf="@+id/ivFav"
+        app:layout_constraintStart_toEndOf="@+id/ivCaratulaLanzada"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pg" />
 
     <ImageView
@@ -58,7 +58,7 @@
         android:id="@+id/ivFav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDuracion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/btn_star_big_on" />
 </androidx.constraintlayout.widget.ConstraintLayout>

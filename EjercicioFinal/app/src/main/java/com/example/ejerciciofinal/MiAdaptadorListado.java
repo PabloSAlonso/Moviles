@@ -103,7 +103,7 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
         holder.getIvCaratula().setImageResource(p.getPortada());
         holder.getIvEdad().setImageResource(p.getClasi());
         if (p.getFavorita()){
-            holder.getIvFavs().setImageResource(R.drawable.iconofav);
+            holder.getIvFavs().setImageResource(R.drawable.star);
         } else {
             holder.getIvFavs().setImageResource(0);
         }

@@ -2,6 +2,7 @@ package com.example.ejerciciofinal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 import androidx.activity.EdgeToEdge;
@@ -42,7 +44,9 @@ public class ListadoFavoritos extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        peliculas = Datos.rellenaPeliculas();
+        peliculas = new ArrayList<>();
+        Intent peliculasDevueltas = getIntent();
+        peliculas = (ArrayList<Pelicula>) peliculasDevueltas.getSerializableExtra("pelis");
         ArrayList<String> tituloYdir = new ArrayList<>();
         for (int i = 0; i < peliculas.size(); i++) {
             tituloYdir.add(String.format("Título: %s, Director: %s", peliculas.get(i).titulo, peliculas.get(i).director));
@@ -61,6 +65,8 @@ public class ListadoFavoritos extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         }
+        Intent vuelvenAlMain = new Intent();
+        setResult(RESULT_OK);
         listadoFav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -75,19 +81,7 @@ public class ListadoFavoritos extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-        ActivityResultLauncher<Intent> launcher = registerForActivityResult(new
-                ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-            @Override
-            public void onActivityResult(ActivityResult result) {
-                if (result.getResultCode()==RESULT_OK){
-                    Intent devolverFavs = result.getData();
-                    for (int i = 0; i < peliculas.size(); i++) {
-                        //Pasar clave
-                        peliculas.get(i).favorita = (boolean)devolverFavs.getBooleanExtra("",peliculas.get(i).getFavorita()) ;
-                    }
-                }
-            }
-        });
+
     }
 
     @Override
@@ -103,6 +97,9 @@ public class ListadoFavoritos extends AppCompatActivity {
         if(id == android.R.id.home ) {
             onBackPressed();
             return true;
+        } else if (id == R.id.volverGuardando) {
+            //Actividad que devuelve las nuevas pelis chequeadas
+
         }
         return super.onOptionsItemSelected(item);
     }

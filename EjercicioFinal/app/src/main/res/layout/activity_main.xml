@@ -9,8 +9,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="412dp"
-        android:layout_height="449dp"
+        android:layout_width="413dp"
+        android:layout_height="542dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

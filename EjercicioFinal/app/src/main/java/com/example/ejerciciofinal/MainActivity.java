@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Pelicula>peliculas;
     ActionBar ab;
     TextView seccionFija;
+    ActivityResultLauncher<Intent> launcher;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,8 +90,9 @@ public class MainActivity extends AppCompatActivity {
             Intent lanzarListado = new Intent(MainActivity.this, RecyclerListado.class);
             startActivity(lanzarListado);
         } else if(item.getItemId() == R.id.favoritos){
-            Intent lanzarFavoritos = new Intent(MainActivity.this, ListadoFavoritos.class);
-            startActivity(lanzarFavoritos);
+            Intent devolverPelis = new Intent(MainActivity.this, ListadoFavoritos.class);
+            devolverPelis.putExtra("pelis",peliculas);
+            launcher.launch(devolverPelis);
         }
 
 
