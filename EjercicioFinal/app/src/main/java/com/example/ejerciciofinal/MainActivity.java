@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(tb);
         ab = getSupportActionBar();
 
+
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
                     Intent i = o.getData();
                     peliculasAux = (ArrayList<Pelicula>) i.getSerializableExtra("pelis_nuevas_favs");
                     peliculas.clear();
-                    peliculas.addAll(peliculasAux);
+                    for (int j = 0; j < peliculasAux.size(); j++) {
+                        peliculas.add(peliculasAux.get(j));
+                    }
                 }
             }
         });
@@ -100,6 +103,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.listado){
+            Intent vaAlistado = new Intent();
+            vaAlistado.putExtra("pelis_main", peliculas);
+            setResult(RESULT_OK, vaAlistado);
+            finish();
+
             Intent lanzarListado = new Intent(MainActivity.this, RecyclerListado.class);
             startActivity(lanzarListado);
         } else if(item.getItemId() == R.id.favoritos){
@@ -107,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
             Intent devolverPelis = new Intent(MainActivity.this, ListadoFavoritos.class);
             devolverPelis.putExtra("pelis",peliculas);
             launcher.launch(devolverPelis);
+        } else if(item.getItemId() == R.id.añadir){
+
+        } else if(item.getItemId() == R.id.mostrarCol){
+
+        } else if(item.getItemId() == R.id.mostrarFav){
+
         }
 
 

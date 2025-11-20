@@ -1,13 +1,18 @@
 package com.example.ejerciciofinal;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,8 +28,10 @@ public class RecyclerListado extends AppCompatActivity {
     RecyclerView rvLs;
     Toolbar tbLs;
     MiAdaptadorListado miAdaptadorListado;
-    ArrayList<Pelicula>peliculas;
+    ArrayList<Pelicula>peliculas = new ArrayList<>();
+    ArrayList<Pelicula> peliculasAux;
     ActionBar abLs;
+    ActivityResultLauncher<Intent> launcher;
 
     RecyclerView.LayoutManager miLayoutManagerLs;
     @Override
@@ -37,7 +44,22 @@ public class RecyclerListado extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        peliculas = Datos.rellenaPeliculas();
+        Log.i("AUN NO ENTRO A RELLENAR", "MAL");
+        //NO ENTRA EN EL IF DEL LAUNCHER
+        launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult o) {
+                if (o.getResultCode() == RESULT_OK){
+                    Log.i("ENTRA A RELLENAR","BIEN");
+                    Intent pillarPelisMain = o.getData();
+                    peliculasAux = (ArrayList<Pelicula>) pillarPelisMain.getSerializableExtra("pelis_main");
+                    for (int i = 0; i < peliculasAux.size(); i++) {
+                        peliculas.add(peliculasAux.get(i));
+                        Log.i("ESTADO DE LISTA",peliculas.toString());
+                    }
+                }
+            }
+        });
         rvLs = findViewById(R.id.recyclerViewListado);
         tbLs = findViewById(R.id.toolbarListado);
         miAdaptadorListado = new MiAdaptadorListado(peliculas, this);
@@ -52,8 +74,7 @@ public class RecyclerListado extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_volver,menu);
-
+        menuInflater.inflate(R.menu.menu_atras,menu);
         return super.onCreateOptionsMenu(menu);
     }
 

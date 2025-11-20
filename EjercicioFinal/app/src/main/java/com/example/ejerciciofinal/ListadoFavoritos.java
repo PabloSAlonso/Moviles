@@ -10,14 +10,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
 import androidx.activity.EdgeToEdge;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -82,7 +78,7 @@ public class ListadoFavoritos extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_volver,menu);
+        inflater.inflate(R.menu.menu_volver_guardando,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -98,7 +94,7 @@ public class ListadoFavoritos extends AppCompatActivity {
             vuelvenAlMain.putExtra("pelis_nuevas_favs", peliculas);
             setResult(RESULT_OK, vuelvenAlMain);
             finish();
-
+            Log.i("PRUEBA LISTADO", "Guardado Correctamente");
             return true;
         }
         return super.onOptionsItemSelected(item);
