@@ -28,7 +28,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ArrayAdapter<String> adapter;
-    Toolbar toolbar;
     ArrayList<PilotoF1> pilotos;
     RecyclerView rv;
     Toolbar tb;
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         rv = findViewById(R.id.recyclerView);
         adaptador = new AdapterRecyclerMain(pilotos);
-        GridLayoutManager miLayoutManager =new GridLayoutManager(this, 3,
+        GridLayoutManager miLayoutManager =new GridLayoutManager(this, 2,
                 GridLayoutManager.VERTICAL, true);
         rv.setLayoutManager(miLayoutManager);
         rv.setAdapter(adaptador);

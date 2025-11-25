@@ -16,20 +16,7 @@
             android:name=".ActivityListView"
             android:exported="false" />
         <activity
-            android:name="Cosas_Clase_Iago.EjercicioRV"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name="Cosas_Clase_Iago.PruebaSpinner"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
     </application>
-
 </manifest>

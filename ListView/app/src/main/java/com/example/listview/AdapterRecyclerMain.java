@@ -60,7 +60,7 @@ public class AdapterRecyclerMain extends RecyclerView.Adapter<AdapterRecyclerMai
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         PilotoF1 pilotos = this.pilotos.get(position);
         holder.getNombre().setText(pilotos.getNombre());
-        holder.getEdad().setText(pilotos.getEdad());
+        holder.getEdad().setText(pilotos.getEdad()+"");
         holder.getEscuderia().setText(pilotos.getEscuderia());
         holder.getCara().setImageResource(pilotos.getImagenPiloto());
     }
