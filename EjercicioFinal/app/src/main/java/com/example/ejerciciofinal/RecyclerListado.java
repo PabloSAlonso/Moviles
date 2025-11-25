@@ -44,10 +44,8 @@ public class RecyclerListado extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        Log.i("ENTRA A RELLENAR","BIEN");
         Intent pillarPelisMain = getIntent();
         peliculas = (ArrayList<Pelicula>) pillarPelisMain.getSerializableExtra("pelis_main");
-
         rvLs = findViewById(R.id.recyclerViewListado);
         tbLs = findViewById(R.id.toolbarListado);
         miAdaptadorListado = new MiAdaptadorListado(peliculas, this);

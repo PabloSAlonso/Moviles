@@ -65,9 +65,12 @@ public class ListadoFavoritos extends AppCompatActivity {
         //
         listadoFav.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                for (int i = 0; i < listadoFav.getCheckedItemPositions().size(); i++){
-                    peliculas.get(i).setFavorita(true);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+                if (peliculas.get(position).getFavorita() == false){
+                    peliculas.get(position).setFavorita(true);
+                    adapter.notifyDataSetChanged();
+                } else {
+                    peliculas.get(position).setFavorita(false);
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -90,7 +93,7 @@ public class ListadoFavoritos extends AppCompatActivity {
             return true;
         } else if (id == R.id.volverGuardando) {
             //Actividad que devuelve las nuevas pelis chequeadas
-            Intent vuelvenAlMain = new Intent();
+            Intent vuelvenAlMain = new Intent(ListadoFavoritos.this, MainActivity.class);
             vuelvenAlMain.putExtra("pelis_nuevas_favs", peliculas);
             setResult(RESULT_OK, vuelvenAlMain);
             finish();

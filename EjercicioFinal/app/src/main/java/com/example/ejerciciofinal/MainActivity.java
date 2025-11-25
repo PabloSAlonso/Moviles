@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         tb = findViewById(R.id.toolbar);
         setSupportActionBar(tb);
         ab = getSupportActionBar();
-
-
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,15 +82,17 @@ public class MainActivity extends AppCompatActivity {
                     Intent i = o.getData();
                     peliculasAux = (ArrayList<Pelicula>) i.getSerializableExtra("pelis_nuevas_favs");
                     peliculas.clear();
-                    for (int j = 0; j < peliculasAux.size(); j++) {
+                    peliculas.addAll(peliculasAux);
+                    for(int j = 0; j < peliculasAux.size(); j++){
                         peliculas.add(peliculasAux.get(j));
                     }
+                    miAdaptador.notifyDataSetChanged();
+
                 }
             }
         });
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -103,12 +103,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.listado){
-            Intent vaAlistado = new Intent();
-            vaAlistado.putExtra("pelis_main", peliculas);
-            setResult(RESULT_OK, vaAlistado);
-            finish();
-
+//            Intent vaAlistado = new Intent();
+//            vaAlistado.putExtra("pelis_main", peliculas);
+//            setResult(RESULT_OK, vaAlistado);
+//            finish();
             Intent lanzarListado = new Intent(MainActivity.this, RecyclerListado.class);
+            lanzarListado.putExtra("pelis_main", peliculas);
             startActivity(lanzarListado);
         } else if(item.getItemId() == R.id.favoritos){
 

@@ -1,32 +1,38 @@
 package com.example.listview;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ListView l;
-    ArrayList<String> listaString = new ArrayList<>();
+
     ArrayAdapter<String> adapter;
     Toolbar toolbar;
+    ArrayList<PilotoF1> pilotos;
+    RecyclerView rv;
+    Toolbar tb;
+    AdapterRecyclerMain adaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,44 +44,46 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        l = findViewById(R.id.list);
-        String[]contactos = new String[] {"Italiani", "Costa", "Lugonpa", "AaTuprima", "Montes", "broder", "La calva de Curro", "Monster blanco"};
-        for (int i = 0; i < contactos.length; i++) {
-            listaString.add(contactos[i]);
-        }
-        adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_multiple_choice, listaString);
-        l.setAdapter(adapter);
-        l.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, "Has seleccionado al numero:"+position+1, Toast.LENGTH_LONG).show();
-                adapter.notifyDataSetChanged();
-            }
-        });
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        pilotos = PilotoF1.cargarPilotos();
+        tb = findViewById(R.id.toolbar);
+        setSupportActionBar(tb);
+        ActionBar actionBar = getSupportActionBar();
+        rv = findViewById(R.id.recyclerView);
+        adaptador = new AdapterRecyclerMain(pilotos);
+        GridLayoutManager miLayoutManager =new GridLayoutManager(this, 3,
+                GridLayoutManager.VERTICAL, true);
+        rv.setLayoutManager(miLayoutManager);
+        rv.setAdapter(adaptador);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu,menu);
-
+        menuInflater.inflate(R.menu.menu_main,menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+    ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult o) {
+            if (o.getResultCode()==RESULT_OK){
+                Intent intent = o.getData();
+                ArrayList<PilotoF1> pilotosMod = (ArrayList<PilotoF1>) intent.getSerializableExtra("pilotosMod");
+                pilotos.clear();
+                pilotos.addAll(pilotosMod);
+                adaptador.notifyDataSetChanged();
+            }
+        }
+    });
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.borrar) {
-            for (int i = l.getCount() -1 ; i >=0 ;i--) {
-                if (l.isItemChecked(i)){
-                    listaString.remove(i);
-                }
-            }
-            l.getCheckedItemPositions().clear();
-            adapter.notifyDataSetChanged();
+        if (id == R.id.lanzar_listview) {
+            Intent lanzarListView = new Intent();
+            lanzarListView.putExtra("pilotos", pilotos);
+            launcher.launch(lanzarListView);
+            return true;
         }
         adapter.notifyDataSetChanged();
         return false;
