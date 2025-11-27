@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class ActividadListado extends AppCompatActivity {
     ImageView ivCaratulaGrande;
     ScrollView scrollSinopsis;
+    TextView textoSinopsis;
     Pelicula peliculaRecogida;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +34,10 @@ public class ActividadListado extends AppCompatActivity {
         peliculaRecogida = (Pelicula) recibePelicula.getSerializableExtra("pelicula_seleccionada");
         ivCaratulaGrande = findViewById(R.id.caratulaGrande);
         scrollSinopsis = findViewById(R.id.scrollSinopsis);
+        textoSinopsis = findViewById(R.id.tvSinopsis);
         this.setTitle(peliculaRecogida.getTitulo());
         ivCaratulaGrande.setImageResource(peliculaRecogida.getPortada());
+        textoSinopsis.setText(peliculaRecogida.getSinopsis());
 
         ivCaratulaGrande.setOnClickListener(new View.OnClickListener() {
             @Override
