@@ -38,7 +38,6 @@ public class ActividadListado extends AppCompatActivity {
         this.setTitle(peliculaRecogida.getTitulo());
         ivCaratulaGrande.setImageResource(peliculaRecogida.getPortada());
         textoSinopsis.setText(peliculaRecogida.getSinopsis());
-
         ivCaratulaGrande.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
