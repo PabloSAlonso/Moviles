@@ -93,7 +93,7 @@ public class ListadoFavoritos extends AppCompatActivity {
             return true;
         } else if (id == R.id.volverGuardando) {
             //Actividad que devuelve las nuevas pelis chequeadas
-            Intent vuelvenAlMain = new Intent(ListadoFavoritos.this, MainActivity.class);
+            Intent vuelvenAlMain = new Intent();
             vuelvenAlMain.putExtra("pelis_nuevas_favs", peliculas);
             setResult(RESULT_OK, vuelvenAlMain);
             finish();

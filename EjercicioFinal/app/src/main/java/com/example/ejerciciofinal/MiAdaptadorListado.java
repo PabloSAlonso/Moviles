@@ -63,8 +63,8 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
                     int selectedPos = getAdapterPosition();
                     setSelectedPos(selectedPos);
                     Intent lanzarNuevoActivity = new Intent(contexto, ActividadListado.class);
-
-
+                    lanzarNuevoActivity.putExtra("pelicula_seleccionada", peliculas.get(selectedPos));
+                    contexto.startActivity(lanzarNuevoActivity);
                 }
             });
         }

@@ -35,12 +35,15 @@ public class MainActivity extends AppCompatActivity {
     Toolbar tb;
     ImageButton boton;
     RecyclerView.LayoutManager miLayoutManager;
+    RecyclerView.LayoutManager miLayoutManager2;
     MiAdaptador miAdaptador;
     ArrayList<Pelicula>peliculas;
     ArrayList<Pelicula>peliculasAux;
     ActionBar ab;
     TextView seccionFija;
     ActivityResultLauncher<Intent> launcher;
+    boolean cambiaCols = true;
+    boolean mostrarFavs = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         boton = findViewById(R.id.btnActionBar);
         rv = findViewById(R.id.recyclerView);
         miLayoutManager =new GridLayoutManager(this, 1);
+        miLayoutManager2 =new GridLayoutManager(this, 2);
         rv.setLayoutManager(miLayoutManager);
         rv.setAdapter(miAdaptador);
         tb = findViewById(R.id.toolbar);
@@ -83,9 +87,6 @@ public class MainActivity extends AppCompatActivity {
                     peliculasAux = (ArrayList<Pelicula>) i.getSerializableExtra("pelis_nuevas_favs");
                     peliculas.clear();
                     peliculas.addAll(peliculasAux);
-                    for(int j = 0; j < peliculasAux.size(); j++){
-                        peliculas.add(peliculasAux.get(j));
-                    }
                     miAdaptador.notifyDataSetChanged();
 
                 }
@@ -103,24 +104,42 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.listado){
-//            Intent vaAlistado = new Intent();
-//            vaAlistado.putExtra("pelis_main", peliculas);
-//            setResult(RESULT_OK, vaAlistado);
-//            finish();
             Intent lanzarListado = new Intent(MainActivity.this, RecyclerListado.class);
             lanzarListado.putExtra("pelis_main", peliculas);
             startActivity(lanzarListado);
         } else if(item.getItemId() == R.id.favoritos){
-            //aaaaaaaaaaaaaaaaa
             Intent devolverPelis = new Intent(MainActivity.this, ListadoFavoritos.class);
             devolverPelis.putExtra("pelis",peliculas);
             launcher.launch(devolverPelis);
         } else if(item.getItemId() == R.id.añadir){
 
+
         } else if(item.getItemId() == R.id.mostrarCol){
-
+            if (cambiaCols){
+                cambiaCols = false;
+                rv.setLayoutManager(miLayoutManager2);
+            } else {
+                cambiaCols = true;
+                rv.setLayoutManager(miLayoutManager);
+            }
         } else if(item.getItemId() == R.id.mostrarFav){
-
+            if (!mostrarFavs){
+                peliculasAux.clear();
+                peliculasAux.addAll(peliculas);
+                peliculas.clear();
+                for (int i = 0; i < peliculasAux.size(); i++){
+                    if (peliculasAux.get(i).getFavorita()){
+                        peliculas.add(peliculasAux.get(i));
+                        miAdaptador.notifyDataSetChanged();
+                    }
+                }
+                mostrarFavs = true;
+            } else {
+                peliculas.clear();
+                peliculas.addAll(peliculasAux);
+                miAdaptador.notifyDataSetChanged();
+                mostrarFavs = false;
+            }
         }
 
 

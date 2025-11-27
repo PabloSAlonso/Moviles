@@ -31,7 +31,7 @@ public class RecyclerListado extends AppCompatActivity {
     ArrayList<Pelicula>peliculas = new ArrayList<>();
     ArrayList<Pelicula> peliculasAux;
     ActionBar abLs;
-    ActivityResultLauncher<Intent> launcher;
+
 
     RecyclerView.LayoutManager miLayoutManagerLs;
     @Override
@@ -45,7 +45,8 @@ public class RecyclerListado extends AppCompatActivity {
             return insets;
         });
         Intent pillarPelisMain = getIntent();
-        peliculas = (ArrayList<Pelicula>) pillarPelisMain.getSerializableExtra("pelis_main");
+        peliculasAux = (ArrayList<Pelicula>) pillarPelisMain.getSerializableExtra("pelis_main");
+        peliculas.addAll(peliculasAux);
         rvLs = findViewById(R.id.recyclerViewListado);
         tbLs = findViewById(R.id.toolbarListado);
         miAdaptadorListado = new MiAdaptadorListado(peliculas, this);
