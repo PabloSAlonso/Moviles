@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             lanzarListado.putExtra("pelis_main", peliculas);
             startActivity(lanzarListado);
         } else if(item.getItemId() == R.id.favoritos){
-
+            //aaaaaaaaaaaaaaaaa
             Intent devolverPelis = new Intent(MainActivity.this, ListadoFavoritos.class);
             devolverPelis.putExtra("pelis",peliculas);
             launcher.launch(devolverPelis);
