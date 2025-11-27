@@ -88,7 +88,6 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
         }
         public ImageView getIvFavs(){
             return ivFavs;
-
         }
     }
 

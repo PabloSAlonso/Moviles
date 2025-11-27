@@ -1,5 +1,8 @@
 package com.example.ejerciciofinal;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class ActividadListado extends AppCompatActivity {
     ImageView ivCaratulaGrande;
     ScrollView scrollSinopsis;
+    Pelicula peliculaRecogida;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,13 +28,27 @@ public class ActividadListado extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        Intent recibePelicula = getIntent();
+        peliculaRecogida = (Pelicula) recibePelicula.getSerializableExtra("pelicula_seleccionada");
         ivCaratulaGrande = findViewById(R.id.caratulaGrande);
         scrollSinopsis = findViewById(R.id.scrollSinopsis);
+        this.setTitle(peliculaRecogida.getTitulo());
+        ivCaratulaGrande.setImageResource(peliculaRecogida.getPortada());
+
         ivCaratulaGrande.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                watchYoutubeVideo(peliculaRecogida.getIdYoutube());
             }
         });
+    }
+        public void watchYoutubeVideo(String id) {
+        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
+        try {
+            startActivity(appIntent);
+        } catch (ActivityNotFoundException ex) {
+            startActivity(webIntent);
+        }
     }
 }
