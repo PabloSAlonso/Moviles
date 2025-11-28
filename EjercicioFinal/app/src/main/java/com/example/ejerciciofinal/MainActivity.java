@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(ab.isShowing()){
                     ab.hide();
-                    boton.setImageResource(R.drawable.g);
+                    boton.setImageResource(R.drawable.mostrar);
                 } else {
                     ab.show();
-                    boton.setImageResource(R.drawable.r);
+                    boton.setImageResource(R.drawable.ocultar);
                 }
             }
         });
