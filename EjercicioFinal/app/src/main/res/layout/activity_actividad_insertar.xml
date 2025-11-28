@@ -47,53 +47,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spinnerSalaInsertar" />
 
-    <RadioButton
-        android:id="@+id/rb1Insertar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RadioButton"
-        app:layout_constraintBottom_toTopOf="@+id/rb3Insertar"
-        app:layout_constraintEnd_toStartOf="@+id/rb2Insertar"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <TextView
         android:id="@+id/tvEdadesInsertar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         android:text="Edades"
         app:layout_constraintBottom_toTopOf="@+id/rb1Insertar"
         app:layout_constraintEnd_toStartOf="@+id/spinnerSalaInsertar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSalaInsertar" />
-
-    <RadioButton
-        android:id="@+id/rb2Insertar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RadioButton"
-        app:layout_constraintBottom_toTopOf="@+id/rb4Insertar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/rb1Insertar" />
-
-    <RadioButton
-        android:id="@+id/rb3Insertar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="RadioButton"
-        app:layout_constraintBottom_toTopOf="@+id/tvEstrenoInsertar"
-        app:layout_constraintEnd_toStartOf="@+id/rb4Insertar"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <RadioButton
-        android:id="@+id/rb4Insertar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RadioButton"
-        app:layout_constraintBottom_toBottomOf="@+id/rb3Insertar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/rb3Insertar" />
 
     <TextView
         android:id="@+id/tvEstrenoInsertar"
@@ -165,10 +129,44 @@
         android:id="@+id/btnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Guardar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/calendarioFechaInsertar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEstrenoInsertar" />
+
+    <RadioGroup
+        android:id="@+id/grupoEdades"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/tvEstrenoInsertar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEdadesInsertar">
+
+        <RadioButton
+            android:id="@+id/rb1Insertar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/pg" />
+
+        <RadioButton
+            android:id="@+id/rb2Insertar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/pg13" />
+
+        <RadioButton
+            android:id="@+id/rb3Insertar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/r" />
+
+        <RadioButton
+            android:id="@+id/rb4Insertar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@drawable/g" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

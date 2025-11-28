@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> launcher;
     boolean cambiaCols = true;
     boolean mostrarFavs = false;
+    Pelicula peliNueva;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         peliculasAux = new ArrayList<>();
         peliculas = Datos.rellenaPeliculas();
         seccionFija = findViewById(R.id.tvSeccionFija);
@@ -90,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
                     miAdaptador.notifyDataSetChanged();
 
                 }
+                if (o.getResultCode() == RESULT_FIRST_USER){
+                    Intent recogePeli = o.getData();
+                    peliNueva = (Pelicula) recogePeli.getSerializableExtra("peli_nueva");
+                    peliculas.add(peliNueva);
+                    miAdaptador.notifyDataSetChanged();
+                }
             }
         });
 
@@ -107,12 +115,15 @@ public class MainActivity extends AppCompatActivity {
             Intent lanzarListado = new Intent(MainActivity.this, RecyclerListado.class);
             lanzarListado.putExtra("pelis_main", peliculas);
             startActivity(lanzarListado);
+
         } else if(item.getItemId() == R.id.favoritos){
             Intent devolverPelis = new Intent(MainActivity.this, ListadoFavoritos.class);
             devolverPelis.putExtra("pelis",peliculas);
             launcher.launch(devolverPelis);
-        } else if(item.getItemId() == R.id.añadir){
 
+        } else if(item.getItemId() == R.id.añadir){
+            Intent lanzarInsertar = new Intent(MainActivity.this, ActividadInsertar.class);
+            launcher.launch(lanzarInsertar);
 
         } else if(item.getItemId() == R.id.mostrarCol){
             if (cambiaCols){
