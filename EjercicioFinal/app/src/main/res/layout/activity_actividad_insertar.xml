@@ -5,6 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/brown"
+    android:backgroundTint="@color/brown"
     tools:context=".ActividadInsertar">
 
     <TextView
@@ -120,6 +122,8 @@
         android:id="@+id/calendarioFechaInsertar"
         android:layout_width="239dp"
         android:layout_height="212dp"
+        android:background="@color/mustard"
+        android:backgroundTint="@color/mustard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/spinnerSalaInsertar"
         app:layout_constraintStart_toStartOf="@+id/spinnerSalaInsertar"
@@ -129,7 +133,11 @@
         android:id="@+id/btnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/mustard"
+        android:backgroundTint="@color/mustard"
         android:text="Guardar"
+        android:textColor="@color/light_brown"
+        android:textColorLink="@color/light_brown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/calendarioFechaInsertar"
         app:layout_constraintStart_toStartOf="parent"

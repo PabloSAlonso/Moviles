@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     ActionBar ab;
     TextView seccionFija;
     ActivityResultLauncher<Intent> launcher;
+    ActivityResultLauncher<Intent> launcher2;
     boolean cambiaCols = true;
     boolean mostrarFavs = false;
     Pelicula peliNueva;
@@ -92,9 +93,15 @@ public class MainActivity extends AppCompatActivity {
                     miAdaptador.notifyDataSetChanged();
 
                 }
-                if (o.getResultCode() == RESULT_FIRST_USER){
-                    Intent recogePeli = o.getData();
-                    peliNueva = (Pelicula) recogePeli.getSerializableExtra("peli_nueva");
+
+            }
+        });
+        launcher2 = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult o) {
+                if (o.getResultCode() == RESULT_OK){
+                    Intent i = o.getData();
+                    peliNueva = (Pelicula) i.getSerializableExtra("peli_nueva");
                     peliculas.add(peliNueva);
                     miAdaptador.notifyDataSetChanged();
                 }
@@ -123,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
         } else if(item.getItemId() == R.id.añadir){
             Intent lanzarInsertar = new Intent(MainActivity.this, ActividadInsertar.class);
-            launcher.launch(lanzarInsertar);
+            launcher2.launch(lanzarInsertar);
 
         } else if(item.getItemId() == R.id.mostrarCol){
             if (cambiaCols){

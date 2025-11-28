@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/brown"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -20,7 +21,7 @@
         android:id="@+id/toolbar"
         android:layout_width="408dp"
         android:layout_height="85dp"
-        android:background="?attr/colorPrimary"
+        android:background="@color/mustard"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,8 +31,9 @@
 
     <ImageButton
         android:id="@+id/btnActionBar"
-        android:layout_width="188dp"
-        android:layout_height="168dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/mustard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -97,7 +97,7 @@ public class ActividadInsertar extends AppCompatActivity {
                 nuevaPelicula = new Pelicula(etNombre.getText()+"", etDirector.getText()+"",Integer.parseInt(etDuracion.getText()+""), fechaFinal, sala, imagen,R.drawable.sincara );
                 Intent devuelvePeli = new Intent();
                 devuelvePeli.putExtra("peli_nueva", nuevaPelicula);
-                setResult(RESULT_FIRST_USER);
+                setResult(RESULT_OK);
                 finish();
             }
         });
