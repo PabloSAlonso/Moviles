@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +24,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Date;
 
 public class ActividadInsertar extends AppCompatActivity {
-
+    TextView tvTitulo, tvDuracion, tvDirector, tvSala;
     EditText etNombre, etDirector, etDuracion;
     Spinner spinnerSala;
     ArrayAdapter<String> adaptadorSpinner;
@@ -46,6 +48,10 @@ public class ActividadInsertar extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        tvTitulo = findViewById(R.id.tvTituloInsertar);
+        tvDirector = findViewById(R.id.tvDirectorInsertar);
+        tvDuracion = findViewById(R.id.tvDuracionInsertar);
+        tvSala = findViewById(R.id.tvSalaInsertar);
         etNombre = findViewById(R.id.etTituloInsertar);
         etDirector = findViewById(R.id.etDirectorInsertar);
         etDuracion = findViewById(R.id.etDuracioInsertar);

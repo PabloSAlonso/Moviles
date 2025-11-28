@@ -14,7 +14,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/añadir"
-        android:icon="@android:drawable/ic_input_add"
+        android:icon="@android:drawable/presence_video_away"
         android:title="Añadir Pelicula"
         app:showAsAction="always" />
     <item
