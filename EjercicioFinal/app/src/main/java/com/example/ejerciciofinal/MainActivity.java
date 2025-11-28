@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView rv;
@@ -45,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> launcher2;
     boolean cambiaCols = true;
     boolean mostrarFavs = false;
-    Pelicula peliNueva;
+    Calendar cal = Calendar.getInstance();
+    Pelicula peliNueva = new Pelicula("", "", 0, cal.getTime(), "", R.drawable.g, R.drawable.sincara);
+    Pelicula peliAux;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         peliculasAux = new ArrayList<>();
+        peliAux = new Pelicula("", "", 0, cal.getTime(), "", R.drawable.g, R.drawable.sincara);
         peliculas = Datos.rellenaPeliculas();
         seccionFija = findViewById(R.id.tvSeccionFija);
         miAdaptador = new MiAdaptador(peliculas, seccionFija);
@@ -75,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(ab.isShowing()){
                     ab.hide();
-                    boton.setImageResource(R.drawable.mostrar);
+                    boton.setImageResource(R.drawable.eye_9759449);
                 } else {
                     ab.show();
-                    boton.setImageResource(R.drawable.ocultar);
+                    boton.setImageResource(R.drawable.hidden_7026749);
                 }
             }
         });
@@ -91,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
                     peliculas.clear();
                     peliculas.addAll(peliculasAux);
                     miAdaptador.notifyDataSetChanged();
-
                 }
 
             }
@@ -101,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
             public void onActivityResult(ActivityResult o) {
                 if (o.getResultCode() == RESULT_OK){
                     Intent i = o.getData();
-                    peliNueva = (Pelicula) i.getSerializableExtra("peli_nueva");
+                    peliAux = (Pelicula) i.getSerializableExtra("peliNueva");
+                    peliNueva = peliAux;
                     peliculas.add(peliNueva);
                     miAdaptador.notifyDataSetChanged();
                 }

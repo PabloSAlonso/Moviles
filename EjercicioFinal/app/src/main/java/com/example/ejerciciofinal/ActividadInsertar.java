@@ -2,6 +2,7 @@ package com.example.ejerciciofinal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,7 +12,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,10 +59,12 @@ public class ActividadInsertar extends AppCompatActivity {
         rb4 = findViewById(R.id.rb4Insertar);
         rb4.setTag(R.drawable.g);
         guardar = findViewById(R.id.btnGuardar);
+        guardar.setBackgroundResource(R.color.mustard);
         grupoRadios = findViewById(R.id.grupoEdades);
         adaptadorSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, salasSpinner);
         spinnerSala.setAdapter(adaptadorSpinner);
         calendarioFechas = findViewById(R.id.calendarioFechaInsertar);
+        calendarioFechas.setFocusedMonthDateColor(R.color.mustard);
         calendarioFechas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,10 +72,14 @@ public class ActividadInsertar extends AppCompatActivity {
                 fechaFinal = new Date(fechaMili);
             }
         });
-        spinnerSala.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        spinnerSala.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 sala = salasSpinner[position];
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                sala = "No se ha seleccionado la sala";
             }
         });
         grupoRadios.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -96,8 +102,9 @@ public class ActividadInsertar extends AppCompatActivity {
             public void onClick(View v) {
                 nuevaPelicula = new Pelicula(etNombre.getText()+"", etDirector.getText()+"",Integer.parseInt(etDuracion.getText()+""), fechaFinal, sala, imagen,R.drawable.sincara );
                 Intent devuelvePeli = new Intent();
-                devuelvePeli.putExtra("peli_nueva", nuevaPelicula);
-                setResult(RESULT_OK);
+                devuelvePeli.putExtra("peliNueva", nuevaPelicula);
+                setResult(RESULT_OK, devuelvePeli);
+                Log.i("PRUEBA PASAR PELI", "el resultado esta chill");
                 finish();
             }
         });

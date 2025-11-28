@@ -108,9 +108,9 @@ public class MiAdaptadorListado extends RecyclerView.Adapter<MiAdaptadorListado.
         }
 
         if (selectedPos == position){
-            holder.itemView.setBackgroundResource(R.color.gray);
+            holder.itemView.setBackgroundResource(R.color.light_brown);
         } else {
-            holder.itemView.setBackgroundResource(R.color.green);
+            holder.itemView.setBackgroundResource(R.color.brown);
         }
     }
 

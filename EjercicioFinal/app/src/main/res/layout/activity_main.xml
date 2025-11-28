@@ -10,7 +10,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="470dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -19,7 +19,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="408dp"
+        android:layout_width="0dp"
         android:layout_height="85dp"
         android:background="@color/mustard"
         android:minHeight="?attr/actionBarSize"
@@ -38,11 +38,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:srcCompat="@drawable/ocultar" />
+        app:srcCompat="@drawable/hidden_7026749" />
 
     <TextView
         android:id="@+id/tvSeccionFija"
-        android:layout_width="406dp"
+        android:layout_width="0dp"
         android:layout_height="42dp"
         android:text="Seccion Fija"
         android:textAlignment="center"

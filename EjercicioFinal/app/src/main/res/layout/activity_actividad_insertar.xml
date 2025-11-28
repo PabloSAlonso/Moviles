@@ -124,6 +124,7 @@
         android:layout_height="212dp"
         android:background="@color/mustard"
         android:backgroundTint="@color/mustard"
+        android:selectedWeekBackgroundColor="@color/light_brown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/spinnerSalaInsertar"
         app:layout_constraintStart_toStartOf="@+id/spinnerSalaInsertar"
