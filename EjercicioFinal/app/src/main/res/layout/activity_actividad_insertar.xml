@@ -129,7 +129,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/calendarioFechaInsertar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEstrenoInsertar"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvEstrenoInsertar" />
 
     <RadioGroup
         android:id="@+id/grupoEdades"
@@ -143,24 +143,28 @@
             android:id="@+id/rb1Insertar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/mustard"
             android:button="@drawable/pg" />
 
         <RadioButton
             android:id="@+id/rb2Insertar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/mustard"
             android:button="@drawable/pg13" />
 
         <RadioButton
             android:id="@+id/rb3Insertar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/mustard"
             android:button="@drawable/r" />
 
         <RadioButton
             android:id="@+id/rb4Insertar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/mustard"
             android:button="@drawable/g" />
     </RadioGroup>
 
