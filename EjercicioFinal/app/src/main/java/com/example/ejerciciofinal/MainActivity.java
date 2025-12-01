@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     boolean cambiaCols = true;
     boolean mostrarFavs = false;
     Calendar cal = Calendar.getInstance();
-    Pelicula peliNueva = new Pelicula("", "", 0, cal.getTime(), "", R.drawable.g, R.drawable.sincara);
     Pelicula peliAux;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,10 +78,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(ab.isShowing()){
                     ab.hide();
-                    boton.setImageResource(R.drawable.eye_9759449);
+                    boton.setImageResource(R.drawable.ticklinear_106227);
                 } else {
                     ab.show();
-                    boton.setImageResource(R.drawable.hidden_7026749);
+                    boton.setImageResource(R.drawable.letter_x_close_cross_remove_delete_cancel_icon_267835);
                 }
             }
         });
@@ -105,8 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 if (o.getResultCode() == RESULT_OK){
                     Intent i = o.getData();
                     peliAux = (Pelicula) i.getSerializableExtra("peliNueva");
-                    peliNueva = peliAux;
-                    peliculas.add(peliNueva);
+                    peliculas.add(peliAux);
                     miAdaptador.notifyDataSetChanged();
                 }
             }

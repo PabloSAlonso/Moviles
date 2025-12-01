@@ -97,7 +97,6 @@ public class ListadoFavoritos extends AppCompatActivity {
             vuelvenAlMain.putExtra("pelis_nuevas_favs", peliculas);
             setResult(RESULT_OK, vuelvenAlMain);
             finish();
-            Log.i("PRUEBA LISTADO", "Guardado Correctamente");
             return true;
         }
         return super.onOptionsItemSelected(item);
