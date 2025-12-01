@@ -124,7 +124,7 @@
         android:background="@color/mustard"
         android:backgroundTint="@color/mustard"
         android:text="Guardar"
-        android:textColor="@color/light_brown"
+        android:textColor="@color/black"
         android:textColorLink="@color/light_brown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/calendarioFechaInsertar"
