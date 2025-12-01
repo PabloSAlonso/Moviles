@@ -145,28 +145,32 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/mustard"
-            android:button="@drawable/pg" />
+            android:button="@drawable/pg"
+            android:buttonTint="@color/mustard" />
 
         <RadioButton
             android:id="@+id/rb2Insertar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/mustard"
-            android:button="@drawable/pg13" />
+            android:button="@drawable/pg13"
+            android:buttonTint="@color/mustard" />
 
         <RadioButton
             android:id="@+id/rb3Insertar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/mustard"
-            android:button="@drawable/r" />
+            android:button="@drawable/r"
+            android:buttonTint="@color/mustard" />
 
         <RadioButton
             android:id="@+id/rb4Insertar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/mustard"
-            android:button="@drawable/g" />
+            android:button="@drawable/g"
+            android:buttonTint="@color/mustard" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
