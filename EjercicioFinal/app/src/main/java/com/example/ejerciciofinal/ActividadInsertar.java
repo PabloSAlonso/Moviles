@@ -70,12 +70,11 @@ public class ActividadInsertar extends AppCompatActivity {
         adaptadorSpinner = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, salasSpinner);
         spinnerSala.setAdapter(adaptadorSpinner);
         calendarioFechas = findViewById(R.id.calendarioFechaInsertar);
-        calendarioFechas.setFocusedMonthDateColor(R.color.mustard);
         calendarioFechas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fechaMili = calendarioFechas.getDate();
-                fechaFinal = new Date(fechaMili);
+
+                fechaFinal = new Date(calendarioFechas.getDate());
             }
         });
         spinnerSala.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
